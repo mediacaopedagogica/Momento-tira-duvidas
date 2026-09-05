@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rota Imobiliária 360° — Laboratório</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#162032}body{background:radial-gradient(circle at 50% 20%,#475b71 0,#273545 34%,#17212d 72%,#101720 100%);overflow-x:hidden}.lab{min-height:100vh;padding:22px}.topbar{max-width:1500px;margin:0 auto 16px;display:grid;grid-template-columns:1.4fr repeat(3,.55fr) .8fr;gap:12px;align-items:stretch}.brand,.hud,.roll{background:linear-gradient(145deg,#f7f3e8,#ded8ca);border:1px solid #fff9;border-radius:18px;box-shadow:0 12px 30px #0007,inset 0 1px #fff;padding:13px 16px}.brand h1{margin:0;font-size:clamp(24px,3vw,43px);line-height:1;color:#17283d}.brand p{margin:6px 0 0;font-size:13px;font-weight:800;color:#596476;letter-spacing:.08em;text-transform:uppercase}.hud{text-align:center;font-weight:800;font-size:12px;color:#657080}.hud b{display:block;margin-top:4px;color:#193758;font-size:22px}.roll{cursor:pointer;border:0;font-weight:1000;color:#fff;background:linear-gradient(145deg,#0e7991,#055f74);font-size:16px;transition:.2s}.roll:hover{transform:translateY(-2px);filter:brightness(1.08)}.wrap{max-width:1500px;margin:auto;display:grid;grid-template-columns:minmax(760px,1fr) 380px;gap:18px;align-items:start}.table{position:relative;min-height:760px;border-radius:30px;overflow:hidden;background:repeating-linear-gradient(90deg,#7d5538 0 44px,#815a3c 44px 88px,#755035 88px 132px);box-shadow:inset 0 0 90px #24150d99,0 28px 60px #0009;border:1px solid #ffffff24}.table:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,#fff1,transparent 22%,transparent 72%,#0002);pointer-events:none}.boardShell{position:absolute;left:50%;top:50%;width:min(92%,1060px);aspect-ratio:1.42/1;transform:translate(-50%,-50%) perspective(1500px) rotateX(7deg) rotateZ(-1.5deg);transform-style:preserve-3d}.board{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr);gap:6px;padding:17px;border-radius:24px;background:linear-gradient(145deg,#31475a,#1b2d3d);border:11px solid #b99762;box-shadow:0 28px 32px #0008,inset 0 0 0 2px #e4c99c,inset 0 0 30px #07111d}.space{position:relative;border-radius:10px;background:linear-gradient(145deg,#fffdf5,#ddd6c7);border:1px solid #0002;box-shadow:inset 0 1px #fff,0 5px 8px #0004;overflow:hidden;padding:7px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}.space .band{height:14px;border-radius:6px 6px 2px 2px;box-shadow:inset 0 -2px #0002}.space .nm{font-size:11px;font-weight:1000;line-height:1.08;color:#263341}.space .small{font-size:8px;font-weight:800;color:#6d7480}.space.active{outline:4px solid #ffe066;filter:brightness(1.06);z-index:8}.corner{background:linear-gradient(145deg,#e7f5ed,#b8d7c7)}.challenge{background:linear-gradient(145deg,#f7efff,#d8c6ef)}.doc{background:linear-gradient(145deg,#eef5ff,#c9daf4)}.event{background:linear-gradient(145deg,#fff4df,#efd5a4)}.city{grid-column:2/6;grid-row:2/6;position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(#95bd87,#759d6b);box-shadow:inset 0 0 0 5px #183147,inset 0 0 35px #1b2a1e88}.street.h{position:absolute;left:0;right:0;top:48%;height:58px;background:#444b50;box-shadow:inset 0 5px #252a2e,inset 0 -5px #252a2e}.street.v{position:absolute;top:0;bottom:0;left:48%;width:58px;background:#444b50;box-shadow:inset 5px 0 #252a2e,inset -5px 0 #252a2e}.street:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 24px,#f6df7c 24px 34px,transparent 34px 58px);opacity:.7}.street.v:after{background:repeating-linear-gradient(0deg,transparent 0 24px,#f6df7c 24px 34px,transparent 34px 58px)}.lot{position:absolute;width:20%;height:24%;border-radius:7px;background:linear-gradient(145deg,#8fc47d,#5f9855);border:2px solid #d6f0cc;box-shadow:inset 0 0 14px #2e552744}.lot:before{content:"LOTE";position:absolute;left:7px;bottom:6px;font-size:8px;font-weight:1000;color:#173d1a;background:#ffffffaa;padding:2px 4px;border-radius:4px}.l1{left:5%;top:7%}.l2{right:5%;top:7%}.l3{left:5%;bottom:7%}.l4{right:5%;bottom:7%}.building{position:absolute;width:82px;height:94px;background:linear-gradient(90deg,#6d7f91,#9eb2c4);box-shadow:14px 16px 16px #0005;transform:skewY(-2deg);border:1px solid #dce9f1}.building:before{content:"";position:absolute;left:9px;right:9px;top:10px;bottom:9px;background:repeating-linear-gradient(0deg,transparent 0 11px,#bde7ff 11px 18px),repeating-linear-gradient(90deg,transparent 0 13px,#bde7ff 13px 22px);opacity:.8}.building:after{content:"";position:absolute;left:8px;right:8px;top:-10px;height:11px;background:#c8d4dc;transform:skewX(-35deg);transform-origin:left bottom;border:1px solid #eef6fa}.b1{left:28%;top:9%;height:115px}.b2{right:27%;bottom:8%;width:70px;height:88px}.house{position:absolute;width:70px;height:45px;background:linear-gradient(90deg,#ead6b8,#fff4da);border:2px solid #fff2d8;box-shadow:9px 10px 12px #0005}.house:before{content:"";position:absolute;left:-6px;top:-27px;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:29px solid #9c4d43}.house:after{content:"";position:absolute;width:13px;height:23px;background:#764a30;left:29px;bottom:0}.h1{left:29%;bottom:10%}.h2{right:28%;top:12%;transform:scale(.82)}.park{position:absolute;left:39%;top:36%;width:22%;height:25%;border-radius:50%;background:radial-gradient(circle,#bce0a6,#6a9f58 66%,#45773e);box-shadow:inset 0 0 18px #254f27}.park:before,.park:after{content:"";position:absolute;width:24px;height:38px;border-radius:50%;background:#2f713b;box-shadow:14px 8px 0 #3f8747,-12px 13px 0 #4b9553}.park:before{left:16px;top:12px}.park:after{right:17px;bottom:9px}.token{position:absolute;width:30px;height:30px;border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 35% 28%,#fff,#ffdd55 19%,#d69d00 65%,#7b5400);box-shadow:0 9px 8px #0007,inset -5px -6px #8b6300;z-index:30;transition:all .34s cubic-bezier(.2,.8,.2,1);pointer-events:none}.token:after{content:"";position:absolute;left:8px;right:8px;bottom:-8px;height:9px;border-radius:50%;background:#8b6506}.diceArea{position:absolute;right:28px;bottom:24px;z-index:40;display:flex;align-items:flex-end;gap:10px}.die{width:68px;height:68px;border-radius:14px;background:linear-gradient(145deg,#fff,#d9dbe0);border:1px solid #fff;box-shadow:9px 11px 14px #0008,inset -6px -8px 12px #aeb2ba;display:grid;place-items:center;font-size:38px;font-weight:1000;color:#172333;transform:rotate(-8deg)}.die.rollin{animation:roll .65s ease}@keyframes roll{0%{transform:rotate(-8deg) scale(1)}35%{transform:rotate(180deg) translateY(-30px) scale(1.15)}70%{transform:rotate(330deg) translateY(-8px)}100%{transform:rotate(352deg) scale(1)}}.coins{position:absolute;left:28px;bottom:23px;display:flex;gap:8px;z-index:20}.coin{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff2a6,#f2c12f 35%,#a66e00 76%);border:4px solid #d79a07;box-shadow:0 5px 0 #714900,0 7px 8px #0007;display:grid;place-items:center;font-size:13px;font-weight:1000;color:#6e4b05}.panel{background:linear-gradient(145deg,#f7f5ef,#dcd6c9);border-radius:24px;padding:18px;box-shadow:0 22px 48px #0008,inset 0 1px #fff;min-height:760px;border:1px solid #fff8}.panel h2{margin:0;color:#12364c;font-size:25px}.panel .sub{margin:5px 0 16px;color:#6a7480;font-size:13px;font-weight:700}.status{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.status div{background:#fff;border-radius:12px;padding:10px;box-shadow:inset 0 0 0 1px #0000000c}.status span{display:block;font-size:10px;text-transform:uppercase;font-weight:900;color:#87909b}.status b{display:block;font-size:18px;color:#21455c;margin-top:3px}.card{background:linear-gradient(145deg,#ffffff,#edf2f4);border:1px solid #d5dde3;border-radius:18px;padding:16px;min-height:340px;box-shadow:0 8px 18px #1c30431a}.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#dcecff;color:#245879;font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.06em}.card h3{font-size:20px;line-height:1.15;margin:12px 0 8px;color:#1b3146}.card p{font-size:14px;line-height:1.5;color:#4d5966}.answers{display:grid;gap:9px;margin-top:12px}.ans{border:1px solid #cbd6dc;background:#fff;border-radius:11px;padding:10px;text-align:left;font-weight:800;color:#344b60;cursor:pointer}.ans:hover{background:#e8f3fa}.ans.good{background:#dff5e4;border-color:#77b986;color:#216130}.ans.bad{background:#fbe0e2;border-color:#cf8186;color:#80343a}.lesson{margin-top:12px;padding:11px;border-radius:11px;background:#fff5cf;color:#705915;font-size:12px;font-weight:800;line-height:1.45}.legend{margin-top:15px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;font-weight:800;color:#53606d}.legend div{display:flex;align-items:center;gap:7px}.dot{width:11px;height:11px;border-radius:3px}.cyan{background:#46a8bd}.green{background:#5ca66d}.purple{background:#8a69b8}.orange{background:#d99a49}.red{background:#bd5d5d}@media(max-width:1180px){.wrap{grid-template-columns:1fr}.panel{min-height:auto}.table{min-height:700px}.topbar{grid-template-columns:1.5fr repeat(3,.6fr);}.roll{grid-column:1/-1}.boardShell{width:94%}}@media(max-width:760px){.lab{padding:8px}.topbar{grid-template-columns:1fr 1fr}.brand{grid-column:1/-1}.wrap{display:block}.table{min-height:590px;border-radius:18px}.boardShell{width:112%;transform:translate(-50%,-50%) perspective(1500px) rotateX(5deg) scale(.78)}.panel{margin-top:10px}.die{width:54px;height:54px}.coins{left:10px;bottom:10px}.diceArea{right:10px;bottom:10px}}
+</style>
+</head>
+<body>
+<div class="lab">
+  <div class="topbar">
+    <div class="brand"><h1>🏙️ Rota Imobiliária 360°</h1><p>Protótipo pedagógico • Mercado e Operações Imobiliárias</p></div>
+    <div class="hud">CAPITAL<b id="money">R$ 1.500</b></div>
+    <div class="hud">PATRIMÔNIO<b id="assets">0</b></div>
+    <div class="hud">ACERTOS<b id="hits">0</b></div>
+    <button class="roll" id="rollBtn">🎲 Jogar o dado</button>
+  </div>
+
+  <div class="wrap">
+    <section class="table">
+      <div class="boardShell">
+        <div class="board" id="board">
+          <div class="city">
+            <div class="street h"></div><div class="street v"></div>
+            <div class="lot l1"></div><div class="lot l2"></div><div class="lot l3"></div><div class="lot l4"></div>
+            <div class="building b1"></div><div class="building b2"></div>
+            <div class="house h1"></div><div class="house h2"></div>
+            <div class="park"></div>
+          </div>
+          <div class="token" id="token"></div>
+        </div>
+      </div>
+      <div class="coins"><div class="coin">R$</div><div class="coin">R$</div><div class="coin">R$</div><div class="coin">R$</div></div>
+      <div class="diceArea"><div class="die" id="die">1</div></div>
+    </section>
+
+    <aside class="panel">
+      <h2>Central de Negócios</h2>
+      <p class="sub">Avance pelo mercado, resolva situações reais e construa patrimônio.</p>
+      <div class="status">
+        <div><span>Posição atual</span><b id="positionName">Início</b></div>
+        <div><span>Rodada</span><b id="round">1</b></div>
+      </div>
+      <div class="card" id="card">
+        <span class="tag">Como jogar</span>
+        <h3>Seu objetivo é dominar a jornada imobiliária.</h3>
+        <p>Jogue o dado, percorra o tabuleiro e resolva desafios sobre captação, documentação, locação, negociação, financiamento e registro.</p>
+        <div class="lesson">💡 Ao acertar, você recebe capital. Em casas de patrimônio, o acerto também representa uma aquisição pedagógica de lote, casa ou edifício.</div>
+      </div>
+      <div class="legend">
+        <div><i class="dot cyan"></i> Operação</div><div><i class="dot green"></i> Patrimônio</div>
+        <div><i class="dot purple"></i> Documentação</div><div><i class="dot orange"></i> Mercado</div>
+      </div>
+    </aside>
+  </div>
+</div>
+<script>
+const spaces=[
+{name:'INÍCIO',type:'corner',band:'#2f8b70'},
+{name:'Captação',type:'challenge',band:'#46a8bd'},
+{name:'Lote urbano',type:'asset',band:'#5ca66d'},
+{name:'Documentação',type:'doc',band:'#8a69b8'},
+{name:'Visita',type:'challenge',band:'#46a8bd'},
+{name:'Oportunidade',type:'event',band:'#d99a49'},
+{name:'Casa residencial',type:'asset',band:'#5ca66d'},
+{name:'Proposta',type:'challenge',band:'#46a8bd'},
+{name:'Financiamento',type:'doc',band:'#8a69b8'},
+{name:'Apartamento',type:'asset',band:'#5ca66d'},
+{name:'Negociação',type:'challenge',band:'#46a8bd'},
+{name:'Mercado em alta',type:'event',band:'#d99a49'},
+{name:'Sala comercial',type:'asset',band:'#5ca66d'},
+{name:'Contrato',type:'doc',band:'#8a69b8'},
+{name:'Locação',type:'challenge',band:'#46a8bd'},
+{name:'Vistoria',type:'challenge',band:'#46a8bd'},
+{name:'Edifício',type:'asset',band:'#5ca66d'},
+{name:'Registro',type:'doc',band:'#8a69b8'},
+{name:'Comissão',type:'challenge',band:'#46a8bd'},
+{name:'FECHAMENTO',type:'corner',band:'#2f8b70'}
+];
+const questions=[
+{q:'Antes de anunciar um imóvel captado, qual cuidado é essencial?',a:['Divulgar imediatamente sem conferir dados','Validar informações, autorização e documentação necessária','Definir comissão sem conversar com o proprietário'],ok:1,tip:'Captação profissional começa com informações confiáveis e autorização adequada.'},
+{q:'Em uma negociação de compra e venda, a proposta serve principalmente para:',a:['Formalizar condições apresentadas pelas partes','Substituir automaticamente o contrato definitivo','Eliminar a necessidade de verificar documentação'],ok:0,tip:'A proposta registra condições da negociação, mas não elimina as etapas documentais e contratuais.'},
+{q:'Na locação, a vistoria de entrada ajuda a:',a:['Determinar o valor do condomínio','Registrar o estado do imóvel no início da ocupação','Substituir o contrato de locação'],ok:1,tip:'A vistoria documenta as condições do imóvel e protege as partes na comparação futura.'},
+{q:'Qual etapa merece atenção antes de concluir uma compra imobiliária?',a:['Conferência documental e situação registral do imóvel','Somente fotografias do anúncio','Apenas a decoração do imóvel'],ok:0,tip:'A análise documental e registral é parte central da segurança da operação.'},
+{q:'O financiamento imobiliário envolve principalmente:',a:['Análise de crédito e condições da instituição financeira','Somente escolha do imóvel','Apenas pagamento da comissão'],ok:0,tip:'Financiamento depende de análise de crédito, regras da instituição e documentação da operação.'},
+{q:'Ao divulgar um imóvel, uma boa prática profissional é:',a:['Usar informações corretas e apresentação fiel do imóvel','Omitir características que possam influenciar a decisão','Prometer condições que ainda não foram confirmadas'],ok:0,tip:'Publicidade imobiliária deve ser clara, verificável e coerente com as condições reais.'},
+{q:'Em operações imobiliárias, o registro do imóvel é importante porque:',a:['Relaciona-se à formalização e publicidade dos direitos reais','Serve apenas como material de marketing','É opcional em qualquer transmissão'],ok:0,tip:'O registro imobiliário tem papel jurídico central na publicidade e formalização de direitos reais.'},
+{q:'A comissão de corretagem deve ser tratada de forma:',a:['Transparente e conforme as condições ajustadas','Somente depois do negócio sem qualquer informação prévia','Sem relação com o serviço prestado'],ok:0,tip:'Condições de remuneração devem ser claras e compatíveis com a contratação e o serviço prestado.'}
+];
+const board=document.getElementById('board'),token=document.getElementById('token'),die=document.getElementById('die'),card=document.getElementById('card'),rollBtn=document.getElementById('rollBtn');
+let pos=0,money=1500,assets=0,hits=0,round=1,busy=false,qidx=0;
+const coords=[];
+function perimeter(){
+ const p=[];for(let c=0;c<6;c++)p.push([6,c+1]);for(let r=4;r>=0;r--)p.push([r+1,6]);for(let c=4;c>=0;c--)p.push([1,c+1]);for(let r=1;r<5;r++)p.push([r+1,1]);return p;
+}
+const path=perimeter();
+spaces.forEach((s,i)=>{const el=document.createElement('div');el.className='space '+(s.type==='corner'?'corner':s.type==='doc'?'doc':s.type==='event'?'event':s.type==='challenge'?'challenge':'');el.style.gridRow=path[i][0];el.style.gridColumn=path[i][1];el.dataset.i=i;el.innerHTML='<div class="band" style="background:'+s.band+'"></div><div class="nm">'+s.name+'</div><div class="small">'+(s.type==='asset'?'PATRIMÔNIO':s.type==='doc'?'DOCUMENTAÇÃO':s.type==='event'?'MERCADO':'OPERAÇÃO')+'</div>';board.appendChild(el);coords.push(el)});
+function placeToken(i,instant=false){const el=coords[i],r=el.getBoundingClientRect(),br=board.getBoundingClientRect();const sx=board.clientWidth/br.width,sy=board.clientHeight/br.height;token.style.transition=instant?'none':'all .34s cubic-bezier(.2,.8,.2,1)';token.style.left=((r.left-br.left+r.width/2)*sx-15)+'px';token.style.top=((r.top-br.top+r.height/2)*sy-15)+'px';coords.forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('positionName').textContent=spaces[i].name}
+function updateHud(){document.getElementById('money').textContent='R$ '+money.toLocaleString('pt-BR');document.getElementById('assets').textContent=assets;document.getElementById('hits').textContent=hits;document.getElementById('round').textContent=round}
+function showChallenge(s){const q=questions[qidx++%questions.length];card.innerHTML='<span class="tag">'+(s.type==='asset'?'Desafio para adquirir patrimônio':'Desafio pedagógico')+'</span><h3>'+q.q+'</h3><p>Escolha a alternativa que representa a conduta mais adequada.</p><div class="answers">'+q.a.map((x,i)=>'<button class="ans" data-a="'+i+'">'+String.fromCharCode(65+i)+') '+x+'</button>').join('')+'</div><div class="lesson" id="lesson">🎯 Responda para concluir esta casa.</div>';card.querySelectorAll('.ans').forEach(b=>b.onclick=()=>answer(b,q,s))}
+function answer(btn,q,s){if(card.dataset.done==='1')return;card.dataset.done='1';const val=+btn.dataset.a,all=[...card.querySelectorAll('.ans')];all.forEach((b,i)=>{b.disabled=true;if(i===q.ok)b.classList.add('good')});if(val===q.ok){hits++;money+=150;if(s.type==='asset'){assets++;money+=100}document.getElementById('lesson').innerHTML='✅ Correto! '+q.tip+(s.type==='asset'?'<br><b>Patrimônio adquirido:</b> +1 ativo pedagógico.':'') }else{btn.classList.add('bad');document.getElementById('lesson').innerHTML='💡 '+q.tip}updateHud();busy=false;rollBtn.disabled=false;rollBtn.textContent='🎲 Jogar o dado'}
+function land(){const s=spaces[pos];card.dataset.done='0';if(s.type==='corner'||s.type==='event'){card.innerHTML='<span class="tag">'+(s.type==='event'?'Mercado':'Etapa')+'</span><h3>'+s.name+'</h3><p>'+(s.type==='event'?'O mercado trouxe uma oportunidade: você recebeu R$ 100 de capital para continuar a jornada.':'Você concluiu uma etapa importante do percurso imobiliário.')+'</p><div class="lesson">📌 Continue avançando pelo tabuleiro e construindo seu patrimônio com decisões profissionais.</div>';if(s.type==='event')money+=100;updateHud();busy=false;rollBtn.disabled=false;rollBtn.textContent='🎲 Jogar o dado'}else showChallenge(s)}
+async function roll(){if(busy)return;busy=true;rollBtn.disabled=true;rollBtn.textContent='Jogando...';die.classList.remove('rollin');void die.offsetWidth;die.classList.add('rollin');const n=1+Math.floor(Math.random()*6);setTimeout(()=>die.textContent=n,250);for(let k=0;k<n;k++){await new Promise(r=>setTimeout(r,380));pos=(pos+1)%spaces.length;if(pos===0)round++;placeToken(pos)}setTimeout(land,280)}
+rollBtn.onclick=roll;window.addEventListener('resize',()=>placeToken(pos,true));setTimeout(()=>placeToken(0,true),120);updateHud();
+</script>
+</body>
+</html>
