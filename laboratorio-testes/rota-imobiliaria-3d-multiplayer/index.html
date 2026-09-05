@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rota Imobiliária 3D — Laboratório</title>
+<style>
+:root{--navy:#0e2238;--navy2:#173a5a;--gold:#d2a449;--cream:#f4efe4;--wood:#6f4327;--ink:#172033;--green:#2e7d5b;--blue:#2f6f9f;--orange:#b86738;--red:#9f4242;--violet:#69509e}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:radial-gradient(circle at 50% 0,#d9c5ab 0,#9a7355 32%,#52331f 78%,#332013 100%);color:#f8f3e9;min-height:100vh}.app{max-width:1500px;margin:auto;padding:18px}.topbar{display:flex;gap:16px;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#101f31,#173955);border:1px solid #ffffff22;border-radius:22px;padding:16px 20px;box-shadow:0 22px 55px #0008,inset 0 1px #ffffff25}.brand h1{margin:0;font-family:Georgia,serif;font-size:clamp(28px,4vw,54px);letter-spacing:.02em}.brand h1 span{color:#e2b85f}.brand p{margin:4px 0 0;color:#d8e5ef;font-weight:700}.badge{padding:10px 14px;border-radius:14px;background:#ffffff12;border:1px solid #ffffff20;font-weight:900}.screen{margin-top:18px}.hidden{display:none!important}
+.lobby{display:grid;grid-template-columns:minmax(330px,.8fr) minmax(420px,1.2fr);gap:18px}.panel{background:linear-gradient(145deg,#f5efe3,#e8dccb);color:var(--ink);border-radius:22px;padding:20px;box-shadow:0 18px 45px #0007,inset 0 1px #fff}.panel h2{margin:0 0 8px;color:var(--navy);font-family:Georgia,serif;font-size:30px}.panel p{line-height:1.5;color:#485268}.formrow{display:flex;gap:10px;flex-wrap:wrap}.formrow input,.formrow select{flex:1;min-width:170px;border:1px solid #cbbda8;border-radius:12px;padding:13px 14px;font-size:16px;background:#fff}.btn{border:0;border-radius:13px;padding:12px 16px;font-weight:1000;cursor:pointer;box-shadow:0 7px 16px #0002}.btn.primary{background:linear-gradient(#173a5a,#10263c);color:#fff}.btn.gold{background:linear-gradient(#f0c96b,#c99a3f);color:#2b2316}.btn.green{background:linear-gradient(#4c9a76,#2f7455);color:#fff}.btn:disabled{opacity:.45;cursor:not-allowed}.names{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chip{padding:8px 10px;border-radius:999px;background:#e6edf3;color:#17324d;font-weight:900;border:1px solid #cad6df}.note{margin-top:14px;font-size:13px;color:#687387}.wheelzone{position:relative;min-height:480px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle,#f6f0e5 0,#e0d2bd 70%,#c8b495 100%)}.wheel{width:min(410px,78vw);aspect-ratio:1;border-radius:50%;position:relative;border:12px solid #1a2b3f;box-shadow:0 28px 50px #0005,inset 0 0 0 8px #c9a45f;background:conic-gradient(#2e7d5b 0 20%,#2f6f9f 20% 40%,#b86738 40% 60%,#69509e 60% 80%,#9f4242 80% 100%);transition:transform 3.2s cubic-bezier(.14,.72,.1,1)}.wheel:after{content:"";position:absolute;inset:39%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d7b45b 28%,#8c6c2e 70%);border:5px solid #fff7;box-shadow:0 6px 15px #0005}.pointer{position:absolute;top:28px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:42px solid #d7a647;filter:drop-shadow(0 5px 4px #0005);z-index:4}.wheelLabel{position:absolute;left:50%;top:50%;transform-origin:0 0;font-weight:1000;color:#fff;text-shadow:0 2px 5px #000;white-space:nowrap;font-size:15px}.result{position:absolute;bottom:22px;left:22px;right:22px;background:#112840ee;color:#fff;border-radius:18px;padding:15px;text-align:center;font-weight:1000;border:1px solid #ffffff22;box-shadow:0 8px 25px #0005}.result small{display:block;color:#cbd9e4;margin-top:5px}
+.gameShell{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px}.desk{position:relative;background:linear-gradient(90deg,#6c4129,#835438 40%,#684029);border-radius:24px;padding:26px 26px 34px;box-shadow:0 24px 55px #0008,inset 0 2px #ffffff18;overflow:hidden}.desk:before{content:"";position:absolute;inset:0;opacity:.12;background:repeating-linear-gradient(8deg,transparent 0 12px,#000 13px 14px)}.boardPerspective{position:relative;perspective:1400px;min-height:760px;display:flex;align-items:center;justify-content:center}.board{position:relative;width:min(970px,92%);aspect-ratio:1.25/1;background:#ece3d4;border:18px solid #13263b;border-radius:24px;box-shadow:0 38px 60px #0009,0 5px 0 #8d6f45,inset 0 0 0 3px #b99c68;transform:rotateX(54deg) rotateZ(-1.2deg);transform-style:preserve-3d}.track{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(6,1fr);gap:4px;padding:4px;pointer-events:none}.tile{background:#f8f4ea;border:2px solid #ad936a;border-radius:8px;padding:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:12px;font-weight:1000;color:#16283c;box-shadow:inset 0 1px #fff,0 3px 0 #8b7657;position:relative}.tile .ico{font-size:18px}.tile.active{outline:4px solid #e8b84c;box-shadow:0 0 0 4px #fff8,0 8px 20px #0006;z-index:3}.tile.property{background:linear-gradient(#f8f1df,#e7d7b5)}.tile.challenge{background:linear-gradient(#f6e0dc,#e3b6aa)}.tile.knowledge{background:linear-gradient(#e4eef6,#c6dbea)}.tile.future{background:linear-gradient(#e0efe7,#bad9c9)}.tile.start{background:linear-gradient(#dff1e4,#a9d1b6)}
+.city{position:absolute;left:15%;right:15%;top:18%;bottom:18%;background:linear-gradient(150deg,#87aa78,#62885f);border-radius:20px;box-shadow:inset 0 0 0 6px #47664b,0 12px 22px #0005;overflow:hidden;transform:translateZ(18px)}.road{position:absolute;background:#58626a;box-shadow:inset 0 0 0 2px #838b90}.road.h1{left:3%;right:3%;top:46%;height:12%}.road.v1{top:3%;bottom:3%;left:45%;width:10%}.park{position:absolute;left:33%;top:35%;width:34%;height:30%;border-radius:50%;background:radial-gradient(circle,#6da6b7 0 38%,#bdd7c2 40% 48%,#4f7b50 50%);box-shadow:0 5px 12px #0004}.building{position:absolute;width:9%;background:linear-gradient(90deg,#e9eef0,#9fb0b9);border:2px solid #74848d;box-shadow:10px 12px 0 #60727b,14px 16px 18px #0006;transform:translateZ(60px)}.building:before{content:"";position:absolute;left:20%;right:20%;top:-26px;height:26px;background:#d9e0e3;border:2px solid #74848d;transform:skewX(-18deg);transform-origin:bottom}.building:after{content:"";position:absolute;inset:10% 18%;background:repeating-linear-gradient(#5d7f96 0 8px,#d5e1e8 9px 13px)}.b1{left:18%;top:18%;height:32%}.b2{left:70%;top:14%;height:42%}.b3{left:18%;top:63%;height:24%}.b4{left:72%;top:66%;height:28%}.house{position:absolute;width:9%;height:9%;background:#f1d4a7;border:2px solid #9a6b48;box-shadow:8px 9px 0 #b17c54,12px 14px 16px #0005;transform:translateZ(30px)}.house:before{content:"";position:absolute;left:-9%;right:-9%;top:-50%;height:52%;background:#a84d3f;clip-path:polygon(50% 0,100% 100%,0 100%)}.h1{left:30%;top:16%}.h2{left:60%;top:22%}.h3{left:27%;top:70%}.h4{left:62%;top:70%}.tree{position:absolute;width:13px;height:13px;border-radius:50%;background:#255b36;box-shadow:0 8px 0 #173d25}.centerTitle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateZ(88px);background:#10263ddd;color:#f0c96b;border:3px solid #c99a3f;border-radius:15px;padding:11px 18px;font-family:Georgia,serif;font-size:22px;text-align:center;box-shadow:0 12px 20px #0007;z-index:8}.token{position:absolute;width:30px;height:30px;border-radius:50% 50% 44% 44%;border:3px solid #fff;box-shadow:0 7px 12px #0007;z-index:20;transform:translate(-50%,-50%) translateZ(90px);transition:left .35s,top .35s}.token:after{content:"";position:absolute;left:50%;top:70%;width:18px;height:18px;border-radius:4px 4px 50% 50%;transform:translateX(-50%);background:inherit}.tokenName{position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:#13263be6;color:#fff;border-radius:8px;padding:2px 6px;font-size:10px;white-space:nowrap}.diceDock{position:absolute;right:28px;bottom:24px;z-index:30;display:flex;align-items:center;gap:12px}.die{width:74px;height:74px;border-radius:15px;background:linear-gradient(145deg,#fff,#d8d8d8);color:#111;font-size:40px;font-weight:1000;border:4px solid #eee;box-shadow:0 13px 22px #0007;cursor:pointer}.die.roll{animation:tumble .7s ease-in-out}@keyframes tumble{0%{transform:rotate(0) scale(1)}40%{transform:rotate(180deg) scale(1.18)}100%{transform:rotate(360deg) scale(1)}}.sidepanel{display:flex;flex-direction:column;gap:14px}.card{background:linear-gradient(145deg,#101f31,#173955);border:1px solid #ffffff20;border-radius:18px;padding:15px;box-shadow:0 14px 30px #0005}.card h3{margin:0 0 10px;color:#f0c96b}.playersList{display:grid;gap:8px}.playerRow{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center;background:#ffffff0d;border-radius:10px;padding:8px}.dot{width:12px;height:12px;border-radius:50%}.statline{font-size:12px;color:#cbd7e0}.teamMission{background:linear-gradient(145deg,#ece3d4,#d8c5a6);color:#172033}.teamMission h3{color:#173955}.quick{display:flex;gap:6px;flex-wrap:wrap}.quick button{border:0;border-radius:10px;padding:8px 9px;background:#ffffff13;color:#fff;cursor:pointer;font-weight:800}.chat{min-height:90px;max-height:145px;overflow:auto;background:#081725aa;border-radius:10px;padding:8px;font-size:12px}.chat div{margin-bottom:6px}
+.modal{position:fixed;inset:0;background:#07111dcc;display:flex;align-items:center;justify-content:center;padding:18px;z-index:100}.modalBox{width:min(720px,96vw);background:linear-gradient(145deg,#f5efe3,#e8dccb);color:#172033;border-radius:22px;padding:22px;box-shadow:0 30px 70px #000b}.modalBox h2{margin:0;color:#173955}.kind{display:inline-block;margin:8px 0;padding:6px 9px;border-radius:999px;background:#dde7ee;color:#173955;font-weight:1000}.question{font-size:19px;line-height:1.45;font-weight:800;margin:14px 0}.options{display:grid;gap:9px}.option{border:2px solid #c8b79e;background:#fff;border-radius:12px;padding:12px;text-align:left;font-weight:800;cursor:pointer}.option:hover{border-color:#977438}.feedback{margin-top:12px;padding:11px;border-radius:10px;background:#edf2f5;font-weight:800}.modalActions{display:flex;justify-content:flex-end;margin-top:14px}.small{font-size:12px;color:#677183}
+@media(max-width:1080px){.lobby,.gameShell{grid-template-columns:1fr}.sidepanel{display:grid;grid-template-columns:repeat(2,1fr)}.boardPerspective{min-height:650px}.gameShell .sidepanel .card:last-child{grid-column:1/-1}}@media(max-width:720px){.app{padding:8px}.topbar{align-items:flex-start;flex-direction:column}.lobby{grid-template-columns:1fr}.wheelzone{min-height:410px}.gameShell{grid-template-columns:1fr}.sidepanel{grid-template-columns:1fr}.boardPerspective{min-height:510px;overflow:auto}.board{width:760px;min-width:760px}.desk{padding:12px}.tile{font-size:10px}.diceDock{right:14px;bottom:14px}.die{width:62px;height:62px}.boardPerspective{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><h1>Rota Imobiliária <span>3D</span></h1><p>Estratégia • conhecimento • negociação • decisões profissionais</p></div>
+  <div class="badge">🧪 LABORATÓRIO • protótipo multiplayer local</div>
+</header>
+
+<section class="screen lobby" id="lobbyScreen">
+  <div class="panel">
+    <h2>🎡 Encontre sua equipe</h2>
+    <p>Adicione os nomes dos estudantes disponíveis. A roleta sorteia aleatoriamente uma dupla, trio ou grupo e define os peões da partida.</p>
+    <div class="formrow">
+      <input id="nameInput" maxlength="24" placeholder="Nome de exibição">
+      <button class="btn primary" id="addName">Adicionar</button>
+    </div>
+    <div class="formrow" style="margin-top:10px">
+      <select id="teamSize"><option value="2">Dupla (2)</option><option value="3" selected>Trio (3)</option><option value="4">Grupo (4)</option><option value="5">Grupo (5)</option></select>
+      <button class="btn gold" id="spinBtn" disabled>🎡 Sortear equipe</button>
+    </div>
+    <div class="names" id="names"></div>
+    <p class="note">Nesta versão de laboratório, os nomes são inseridos no mesmo dispositivo. A versão EaD real precisará de sincronização online para reunir estudantes que estejam em computadores diferentes.</p>
+  </div>
+  <div class="panel wheelzone">
+    <div class="pointer"></div>
+    <div class="wheel" id="wheel"></div>
+    <div class="result" id="result">Aguardando participantes...<small>Adicione pelo menos 2 nomes para começar.</small></div>
+  </div>
+</section>
+
+<section class="screen hidden" id="gameScreen">
+  <div class="gameShell">
+    <div class="desk">
+      <div class="boardPerspective">
+        <div class="board" id="board">
+          <div class="track" id="track"></div>
+          <div class="city">
+            <div class="road h1"></div><div class="road v1"></div><div class="park"></div>
+            <div class="building b1"></div><div class="building b2"></div><div class="building b3"></div><div class="building b4"></div>
+            <div class="house h1"></div><div class="house h2"></div><div class="house h3"></div><div class="house h4"></div>
+            <div class="tree" style="left:12%;top:30%"></div><div class="tree" style="left:84%;top:29%"></div><div class="tree" style="left:13%;top:79%"></div><div class="tree" style="left:84%;top:78%"></div>
+            <div class="centerTitle">MERCADO<br>IMOBILIÁRIO<br><small style="font-size:11px;color:#fff">aprender para decidir</small></div>
+          </div>
+          <div id="tokens"></div>
+        </div>
+        <div class="diceDock"><button class="die" id="die" aria-label="Jogar dado">⚄</button><button class="btn gold" id="rollBtn">Jogar dado</button></div>
+      </div>
+    </div>
+    <aside class="sidepanel">
+      <div class="card"><h3>👥 Equipe</h3><div class="playersList" id="playersList"></div></div>
+      <div class="card teamMission"><h3>🏙️ Missão coletiva</h3><strong>Construir uma carteira imobiliária responsável.</strong><p class="small">A equipe avança combinando conhecimento, negociação, documentação, ética e decisões corretas.</p><div id="teamProgress"><b>Progresso: 0%</b></div></div>
+      <div class="card"><h3>💬 Comunicação rápida</h3><div class="quick"><button data-msg="👍 Concordo">👍 Concordo</button><button data-msg="💡 Tenho uma ideia">💡 Ideia</button><button data-msg="❓ Tenho dúvida">❓ Dúvida</button><button data-msg="🤝 Vamos decidir juntos">🤝 Juntos</button></div><div class="chat" id="chat"><div>Sistema: equipe formada. Boa jornada!</div></div></div>
+    </aside>
+  </div>
+</section>
+</div>
+
+<div class="modal hidden" id="challengeModal" role="dialog" aria-modal="true" aria-labelledby="challengeTitle">
+  <div class="modalBox">
+    <h2 id="challengeTitle">Desafio</h2>
+    <span class="kind" id="challengeKind"></span>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback hidden" id="feedback"></div>
+    <div class="modalActions"><button class="btn primary hidden" id="continueBtn">Continuar a jornada</button></div>
+  </div>
+</div>
+<script>
+(()=>{
+const colors=['#2d7dd2','#d64550','#278c62','#d9a522','#7b55c7'];
+const pool=[], team=[];
+const $=id=>document.getElementById(id);
+const names=$('names'),wheel=$('wheel'),result=$('result'),spinBtn=$('spinBtn'),teamSize=$('teamSize');
+function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function renderPool(){names.innerHTML=pool.map(n=>`<span class="chip">👤 ${esc(n)}</span>`).join('');spinBtn.disabled=pool.length<2;renderWheel(pool)}
+function renderWheel(arr){wheel.querySelectorAll('.wheelLabel').forEach(e=>e.remove());const n=Math.max(arr.length,1);arr.forEach((name,i)=>{const e=document.createElement('div');e.className='wheelLabel';const angle=(360/n)*i-90;const radius=132;e.style.transform=`rotate(${angle}deg) translate(${radius}px) rotate(${-angle}deg)`;e.textContent=name;wheel.appendChild(e)})}
+$('addName').addEventListener('click',()=>{const v=$('nameInput').value.trim();if(!v||pool.includes(v))return;pool.push(v);$('nameInput').value='';renderPool()});
+$('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('addName').click()});
+spinBtn.addEventListener('click',()=>{const size=Math.min(+teamSize.value,pool.length);const shuffled=[...pool].sort(()=>Math.random()-.5);team.splice(0,team.length,...shuffled.slice(0,size));wheel.style.transform=`rotate(${1080+Math.floor(Math.random()*720)}deg)`;spinBtn.disabled=true;result.innerHTML='🎡 Sorteando equipe...<small>Os nomes estão girando.</small>';setTimeout(()=>{result.innerHTML=`✨ Equipe formada: <strong>${team.map(esc).join(' • ')}</strong><small>Preparando os peões e o tabuleiro...</small>`;setTimeout(startGame,900)},3200)});
+
+const tiles=[
+{n:'INÍCIO',i:'➜',t:'start'}, {n:'Captação',i:'📣',t:'knowledge'}, {n:'Visita',i:'🏠',t:'knowledge'}, {n:'Documentação',i:'📑',t:'knowledge'}, {n:'Proposta',i:'🤝',t:'challenge'}, {n:'Financiamento',i:'🏦',t:'knowledge'}, {n:'Contrato',i:'✍️',t:'knowledge'}, {n:'Registro',i:'🏛️',t:'knowledge'},
+{n:'Lote',i:'🌱',t:'property'}, {n:'Casa',i:'🏡',t:'property'}, {n:'Apartamento',i:'🏢',t:'property'}, {n:'Sala Comercial',i:'🏬',t:'property'}, {n:'Edifício',i:'🏙️',t:'property'}, {n:'Condomínio',i:'🏘️',t:'knowledge'},
+{n:'Síndico',i:'🧾',t:'knowledge'}, {n:'Locação',i:'🔑',t:'knowledge'}, {n:'Vistoria',i:'🔎',t:'challenge'}, {n:'Corretagem',i:'🪙',t:'knowledge'}, {n:'Intermediação',i:'🤝',t:'knowledge'}, {n:'Marketing',i:'📱',t:'knowledge'}, {n:'Incorporação',i:'🏗️',t:'knowledge'}, {n:'Garantias',i:'🛡️',t:'knowledge'}, {n:'Built to Suit',i:'🏭',t:'challenge'}, {n:'Sustentabilidade',i:'🌿',t:'future'}, {n:'Governança',i:'⚖️',t:'future'}, {n:'Oportunidade',i:'⭐',t:'challenge'}, {n:'Imprevisto',i:'⚠️',t:'challenge'}, {n:'Conquista',i:'🏆',t:'future'}
+];
+const trackPositions=[];
+function makeTrack(){const track=$('track');track.innerHTML='';const coords=[];for(let c=0;c<8;c++)coords.push([1,c+1]);for(let r=1;r<6;r++)coords.push([r+1,8]);for(let c=6;c>=0;c--)coords.push([6,c+1]);for(let r=4;r>=1;r--)coords.push([r+1,1]);tiles.forEach((tile,i)=>{const [r,c]=coords[i];const d=document.createElement('div');d.className=`tile ${tile.t}`;d.dataset.index=i;d.style.gridRow=r;d.style.gridColumn=c;d.innerHTML=`<div class="ico">${tile.i}</div><div>${tile.n}</div>`;track.appendChild(d);trackPositions.push(d)})}
+const challenges={
+'Captação':{k:'💡 Conhecimento',q:'Ao iniciar uma comercialização imobiliária, qual atitude ajuda a compreender melhor o cliente e orientar a proposta de valor?',o:['Identificar necessidades, interesses e pontos de carência do cliente.','Apresentar apenas o imóvel de maior preço.','Evitar conhecer o perfil do cliente para manter neutralidade.'],a:0},
+'Documentação':{k:'📑 Documento',q:'Após a escritura, qual providência é fundamental para que a aquisição do direito real sobre o imóvel produza efeitos perante terceiros?',o:['Registrar o título na matrícula do imóvel.','Guardar apenas uma cópia particular da proposta.','Solicitar nova visita técnica ao imóvel.'],a:0},
+'Proposta':{k:'🤝 Negociação',q:'Na intermediação, qual conduta está mais alinhada à atuação profissional esperada do corretor?',o:['Aproximar as partes, compreender necessidades e agir com transparência.','Tomar partido do comprador em qualquer situação.','Ocultar informações que possam dificultar o fechamento.'],a:0},
+'Contrato':{k:'✍️ Contrato',q:'No contrato de compra e venda, quais elementos são centrais para a formação do negócio?',o:['Coisa/objeto, preço e consentimento.','Somente preço e publicidade.','Apenas entrega das chaves e comissão.'],a:0},
+'Condomínio':{k:'🏘️ Condomínio',q:'A convenção condominial tem qual função principal?',o:['Consolidar regras de administração, direitos, deveres e funcionamento do condomínio.','Substituir sempre o registro imobiliário de cada unidade.','Definir exclusivamente o preço de venda das unidades.'],a:0},
+'Síndico':{k:'🧾 Gestão',q:'Entre as atribuições do síndico, qual está de acordo com o conteúdo da disciplina?',o:['Representar o condomínio, cumprir a convenção e prestar contas.','Alterar livremente a destinação das unidades.','Dispensar assembleias sempre que houver despesas comuns.'],a:0},
+'Locação':{k:'🔑 Locação',q:'Na locação, qual afirmação melhor representa a relação básica entre as partes?',o:['O locador cede o uso e gozo do bem e o locatário paga aluguel.','O locatário adquire automaticamente a propriedade ao pagar aluguel.','O locador deixa de ter qualquer responsabilidade sobre o bem.'],a:0},
+'Corretagem':{k:'🪙 Corretagem',q:'A remuneração do corretor está relacionada principalmente a quê?',o:['Ao resultado previsto no contrato de intermediação, conforme as condições aplicáveis.','Ao simples cadastro de qualquer interessado.','À quantidade de visitas, independentemente do negócio.'],a:0},
+'Intermediação':{k:'🤝 Intermediação',q:'Qual é a essência da intermediação imobiliária?',o:['Criar condições para aproximar as partes e viabilizar a negociação.','Representar apenas o vendedor e excluir o comprador das decisões.','Substituir todas as etapas jurídicas do negócio.'],a:0},
+'Marketing':{k:'📱 Marketing',q:'No marketing imobiliário, por que conhecer o perfil do cliente é importante?',o:['Para direcionar comunicação e oferta de acordo com interesses e necessidades.','Para enviar o mesmo conteúdo a todos os públicos.','Para eliminar a necessidade de monitorar resultados.'],a:0},
+'Incorporação':{k:'🏗️ Empreendimento',q:'Na incorporação imobiliária, o empreendimento é estruturado para qual finalidade central?',o:['Viabilizar edificação e comercialização de unidades, conforme o regime aplicável.','Somente administrar imóveis já locados.','Substituir o condomínio por locação temporária.'],a:0},
+'Garantias':{k:'🛡️ Garantias',q:'Hipoteca e alienação fiduciária aparecem na disciplina principalmente como quê?',o:['Mecanismos relacionados à segurança/garantia de obrigações imobiliárias.','Ferramentas de marketing digital.','Modalidades de condomínio voluntário.'],a:0},
+'Built to Suit':{k:'🏭 Negócio especial',q:'No built to suit, qual característica é essencial?',o:['Imóvel é adquirido/construído sob medida para uso do contratante por prazo e condições pactuadas.','É sempre uma compra e venda simples à vista.','É uma locação residencial comum sem construção específica.'],a:0},
+'Sustentabilidade':{k:'🌿 Futuro do mercado',q:'No mercado imobiliário, sustentabilidade empresarial é tratada de forma mais ampla quando envolve:',o:['Responsabilidade socioambiental, função social, inovação e equilíbrio econômico.','Somente aumento do lucro no curto prazo.','Apenas redução de custos de marketing.'],a:0},
+'Governança':{k:'⚖️ Governança',q:'A governança corporativa contribui para o mercado imobiliário ao favorecer:',o:['Gestão, transparência, controles e relacionamento entre os agentes envolvidos.','Eliminação de regras e controles internos.','Decisões sem prestação de contas.'],a:0}
+};
+let players=[],turn=0,answered=0;
+function startGame(){
+ $('lobbyScreen').classList.add('hidden');$('gameScreen').classList.remove('hidden');makeTrack();
+ players=team.map((name,i)=>({name,color:colors[i],pos:0,capital:0,pat:0,hits:0}));renderPlayers();renderTokens();markTile();
+}
+function renderPlayers(){const box=$('playersList');box.innerHTML=players.map((p,i)=>`<div class="playerRow"><span class="dot" style="background:${p.color}"></span><div><b>${esc(p.name)}${i===turn?' • sua vez':''}</b><div class="statline">⭐ ${p.hits} acertos • 🪙 ${p.capital} capital • 🏠 ${p.pat} patrimônio</div></div><span>${i===turn?'🎲':''}</span></div>`).join('');$('teamProgress').innerHTML=`<b>Progresso: ${Math.min(100,Math.round(answered/12*100))}%</b>`}
+function tileCenter(index){const board=$('board').getBoundingClientRect(),t=trackPositions[index].getBoundingClientRect();return{x:(t.left+t.width/2-board.left)/board.width*100,y:(t.top+t.height/2-board.top)/board.height*100}}
+function renderTokens(){const box=$('tokens');box.innerHTML='';players.forEach((p,i)=>{const c=tileCenter(p.pos);const e=document.createElement('div');e.className='token';e.id='token'+i;e.style.background=p.color;e.style.left=(c.x+(i-players.length/2)*1.5)+'%';e.style.top=(c.y+i*.6)+'%';e.innerHTML=`<span class="tokenName">${esc(p.name)}</span>`;box.appendChild(e)})}
+function updateToken(i){const p=players[i],c=tileCenter(p.pos),e=$('token'+i);e.style.left=(c.x+(i-players.length/2)*1.5)+'%';e.style.top=(c.y+i*.6)+'%'}
+function markTile(){trackPositions.forEach(e=>e.classList.remove('active'));trackPositions[players[turn].pos].classList.add('active')}
+function roll(){const btn=$('rollBtn'),die=$('die');btn.disabled=true;die.classList.add('roll');const val=1+Math.floor(Math.random()*6);die.textContent=['⚀','⚁','⚂','⚃','⚄','⚅'][val-1];setTimeout(()=>{die.classList.remove('roll');moveSteps(val)},700)}
+function moveSteps(n){let step=0;const p=players[turn];const timer=setInterval(()=>{p.pos=(p.pos+1)%tiles.length;updateToken(turn);markTile();step++;if(step>=n){clearInterval(timer);setTimeout(()=>land(),300)}},360)}
+function land(){const p=players[turn],tile=tiles[p.pos];const ch=challenges[tile.n]||genericChallenge(tile);openChallenge(tile,ch)}
+function genericChallenge(tile){if(tile.t==='property')return{k:'🏠 Patrimônio',q:`Você chegou a ${tile.n}. Para incorporar este patrimônio à sua carteira, qual decisão demonstra melhor prática profissional?`,o:['Verificar situação, finalidade e documentação antes de avançar.','Adquirir sem análise porque o patrimônio sempre valoriza.','Ignorar riscos jurídicos se o preço estiver baixo.'],a:0};if(tile.n==='Imprevisto')return{k:'⚠️ Imprevisto',q:'Uma informação relevante sobre o imóvel apareceu durante a negociação. O que fazer?',o:['Interromper a decisão automática, verificar a informação e orientar as partes com transparência.','Ocultar a informação para não perder o negócio.','Prosseguir sem registrar a ocorrência.'],a:0};if(tile.n==='Oportunidade')return{k:'⭐ Oportunidade',q:'Você identificou um cliente com necessidade bem definida. Qual próximo passo agrega mais valor?',o:['Relacionar necessidade, proposta de valor e alternativas adequadas.','Oferecer apenas o imóvel mais caro.','Evitar fazer perguntas para acelerar o fechamento.'],a:0};return{k:'💡 Conhecimento',q:'Qual atitude profissional sustenta uma operação imobiliária responsável?',o:['Decidir com base em informação, ética e análise das condições do negócio.','Priorizar apenas velocidade.','Ignorar documentação quando houver confiança entre as partes.'],a:0}}
+function openChallenge(tile,ch){$('challengeTitle').textContent=tile.n;$('challengeKind').textContent=ch.k;$('question').textContent=ch.q;const opts=$('options');opts.innerHTML='';$('feedback').classList.add('hidden');$('continueBtn').classList.add('hidden');ch.o.forEach((txt,i)=>{const b=document.createElement('button');b.className='option';b.textContent=txt;b.addEventListener('click',()=>answer(i,ch,tile));opts.appendChild(b)});$('challengeModal').classList.remove('hidden')}
+function answer(i,ch,tile){const p=players[turn],correct=i===ch.a;document.querySelectorAll('.option').forEach(b=>b.disabled=true);const f=$('feedback');f.classList.remove('hidden');if(correct){p.hits++;p.capital+=100;answered++;if(tile.t==='property')p.pat++;f.textContent=tile.t==='property'?'✅ Decisão adequada! Você conquistou o patrimônio e ganhou Capital Profissional.':'✅ Boa decisão! +100 de Capital Profissional.'}else{f.textContent='💡 Essa decisão não é a mais adequada. O jogo registra a tentativa e segue para a próxima rodada.'}$('continueBtn').classList.remove('hidden');renderPlayers()}
+$('continueBtn').addEventListener('click',()=>{$('challengeModal').classList.add('hidden');turn=(turn+1)%players.length;renderPlayers();markTile();$('rollBtn').disabled=false});
+$('rollBtn').addEventListener('click',roll);$('die').addEventListener('click',()=>{if(!$('rollBtn').disabled)roll()});
+document.querySelectorAll('.quick button').forEach(b=>b.addEventListener('click',()=>{const p=players[turn];const d=document.createElement('div');d.innerHTML=`<b>${esc(p.name)}:</b> ${esc(b.dataset.msg)}`;$('chat').appendChild(d);$('chat').scrollTop=$('chat').scrollHeight}));
+window.addEventListener('resize',()=>{if(players.length)renderTokens()});
+renderPool();
+})();
+</script>
+</body>
+</html>
